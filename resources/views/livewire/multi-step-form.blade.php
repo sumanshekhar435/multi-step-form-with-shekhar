@@ -35,22 +35,27 @@
                                     <div class="ui fluid search selection dropdown input-font-bold" id="country">
                                         <input type="hidden" wire:model="country" name="country" />
                                         <i class="dropdown icon"></i>
-                                        <div class="default text" wire:model="country">{{ $selectedCountryName }}</div>
+                                        <div class="default text" wire:model="country" id="countryDropdown">
+                                            {{ $selectedCountryName }}</div>
                                         <div class="menu">
                                             <div class="item" wire:click="selectCountry('af', 'Afghanistan')"
                                                 data-value="af">
                                                 <i class="af flag"></i>Afghanistan
                                             </div>
-                                            <div class="item" data-value="ax">
+                                            <div class="item" data-value="ax"
+                                                wire:click="selectCountry('ax', 'Aland Islands')">
                                                 <i class="ax flag"></i>Aland Islands
                                             </div>
-                                            <div class="item" data-value="al">
+                                            <div class="item" data-value="al"
+                                                wire:click="selectCountry('al', 'Albania')">
                                                 <i class="al flag"></i>Albania
                                             </div>
-                                            <div class="item" data-value="dz">
+                                            <div class="item" data-value="dz"
+                                                wire:click="selectCountry('dz', 'Algeria')">
                                                 <i class="dz flag"></i>Algeria
                                             </div>
-                                            <div class="item" data-value="as">
+                                            <div class="item" data-value="as"
+                                                wire:click="selectCountry('as', 'American Samoa')">
                                                 <i class="as flag"></i>American Samoa
                                             </div>
                                             <div class="item" data-value="ad">
@@ -956,4 +961,13 @@
     <script src="https://cdn.tiny.cloud/1/777soj19kolru4art71pyoei5biguouavgrcgop6xabu7uog/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
+    <script>
+        function selectCountry(code, name) {
+            Livewire.emit('selectCountry', code, name);
+            // Manually refresh the Livewire component after the selection
+            Livewire.hook('element.updated', () => {
+                Livewire.emit('refreshDropdown', 'countryDropdown');
+            });
+        }
+    </script>
 </div>

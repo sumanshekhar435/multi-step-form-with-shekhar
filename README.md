@@ -51,6 +51,9 @@ Generate the application key:
 
 php artisan key:generate
 
+Link storage
+php artisan storage:link
+
 Run the development server:
 
 php artisan serve

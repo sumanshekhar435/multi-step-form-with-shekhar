@@ -25,6 +25,7 @@ class MultiStepForm extends Component
     public function nextStep()
     {
         // Validate based on the current step
+        // dd($this->country);
         if ($this->step === 1) {
             $this->validate([
                 'email' => 'required|email',
